@@ -33,5 +33,8 @@ func imageHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/i/", imageHandler)
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	if err != nil {
+		panic(err)
+	}
 }
